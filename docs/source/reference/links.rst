@@ -89,6 +89,11 @@ BinaryHierarchicalSoftmax
 .. autoclass:: BinaryHierarchicalSoftmax
    :members:
 
+CRF1d
+~~~~~
+.. autoclass:: CRF1d
+   :members:
+
 PReLU
 ~~~~~
 .. autoclass:: PReLU
