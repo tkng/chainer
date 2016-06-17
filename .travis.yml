@@ -61,4 +61,5 @@ addons:
   apt:
     packages:
       - libopenblas-dev
+      - liblapack-devel
       - libhdf5-serial-dev
