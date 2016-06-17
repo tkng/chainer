@@ -60,6 +60,7 @@ sudo: false
 addons:
   apt:
     packages:
-      - libopenblas-dev
-      - liblapack-devel
+      - libblas-dev
+      - libatlas-dev
+      - liblapack-dev
       - libhdf5-serial-dev
