@@ -60,6 +60,7 @@ sudo: false
 addons:
   apt:
     packages:
+      - gfortran
       - libblas-dev
       - libatlas-dev
       - liblapack-dev
