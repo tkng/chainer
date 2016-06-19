@@ -325,7 +325,7 @@ class Ident(chainer.Function):
 
 
 @testing.parameterize(*testing.product({
-    'dtype': [None, numpy.float32, numpy.float64],
+    'dtype': [None, numpy.float16, numpy.float32, numpy.float64],
 }))
 class TestCheckBackward(unittest.TestCase):
 
@@ -340,7 +340,11 @@ class TestCheckBackward(unittest.TestCase):
             u = Ident()(t)
             return s, u
 
-        gradient_check.check_backward(f, (x1, x2), (g1, g2), dtype=self.dtype)
+        options = {}
+        if self.dtype == numpy.float16:
+            options = {'rtol': 1e-1, 'atol': 1e-2}
+        gradient_check.check_backward(
+            f, (x1, x2), (g1, g2), dtype=self.dtype, **options)
 
 
 testing.run_module(__name__, __file__)
