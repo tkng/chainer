@@ -4,7 +4,7 @@ import sys
 
 from setuptools import setup
 
-import chainer_setup_build
+import cupy_setup_build
 
 
 setup_requires = []
@@ -18,47 +18,23 @@ install_requires = [
 
 
 # Hack for Read the Docs
-on_rtd = chainer_setup_build.check_readthedocs_environment()
+on_rtd = cupy_setup_build.check_readthedocs_environment()
 if on_rtd:
     print('Add develop command for Read the Docs')
     sys.argv.insert(1, 'develop')
     setup_requires = ['Cython>=0.23'] + setup_requires
 
-chainer_setup_build.parse_args()
+cupy_setup_build.parse_args()
 
 setup(
-    name='chainer',
+    name='cupy',
     version='1.9.1',
-    description='A flexible framework of neural networks',
+    description=('An implementation of NumPy-compatible multi-dimensional '
+                 'array on CUDA'),
     author='Seiya Tokui',
     author_email='tokui@preferred.jp',
-    url='http://chainer.org/',
-    packages=['chainer',
-              'chainer.functions',
-              'chainer.functions.activation',
-              'chainer.functions.array',
-              'chainer.functions.caffe',
-              'chainer.functions.connection',
-              'chainer.functions.evaluation',
-              'chainer.functions.loss',
-              'chainer.functions.math',
-              'chainer.functions.noise',
-              'chainer.functions.normalization',
-              'chainer.functions.pooling',
-              'chainer.function_hooks',
-              'chainer.initializers',
-              'chainer.links',
-              'chainer.links.activation',
-              'chainer.links.caffe',
-              'chainer.links.connection',
-              'chainer.links.loss',
-              'chainer.links.model',
-              'chainer.links.normalization',
-              'chainer.optimizers',
-              'chainer.serializers',
-              'chainer.testing',
-              'chainer.utils',
-              'cupy',
+    url='http://cupy-ndarray.org/',
+    packages=['cupy',
               'cupy.binary',
               'cupy.core',
               'cupy.creation',
@@ -83,8 +59,8 @@ setup(
     tests_require=['mock',
                    'nose'],
     # To trick build into running build_ext
-    ext_modules=[chainer_setup_build.dummy_extension],
+    ext_modules=[cupy_setup_build.dummy_extension],
     cmdclass={
-        'build_ext': chainer_setup_build.chainer_build_ext,
+        'build_ext': cupy_setup_build.cupy_build_ext,
     },
 )

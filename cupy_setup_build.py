@@ -16,7 +16,7 @@ from install import build
 from install import utils
 
 
-dummy_extension = setuptools.Extension('chainer', ['chainer.c'])
+dummy_extension = setuptools.Extension('cupy', ['cupy.c'])
 cython_version = '0.23.0'
 MODULES = [
     {
@@ -257,11 +257,11 @@ def check_extensions(extensions):
             if not path.isfile(f):
                 msg = ('Missing file: %s\n' % f +
                        'Please install Cython.\n' +
-                       'See http://docs.chainer.org/en/stable/install.html')
+                       'See http://docs.cupy.org/en/stable/install.html')
                 raise RuntimeError(msg)
 
 
-class chainer_build_ext(build_ext.build_ext):
+class cupy_build_ext(build_ext.build_ext):
 
     """`build_ext` command for cython files."""
 
