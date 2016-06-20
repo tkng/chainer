@@ -1,7 +1,5 @@
 import unittest
 
-from chainer import testing
-
 
 class TestImportError(unittest.TestCase):
 
@@ -10,6 +8,3 @@ class TestImportError(unittest.TestCase):
             import cupy  # noqa
         except Exception as e:
             self.assertIsInstance(e, RuntimeError)
-
-
-testing.run_module(__name__, __file__)
