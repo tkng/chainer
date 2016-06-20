@@ -11,7 +11,7 @@ except ImportError:
     # When a user cannot import core, it represents that CuPy is not correctly
     # built.
     msg = ('CuPy is not correctly installed. Please check your environment, '
-           'uninstall Chainer and reinstall it with `pip install chainer '
+           'uninstall Chainer and reinstall it with `pip install cupy '
            '--no-cache-dir -vvvv`.')
     raise six.reraise(RuntimeError, msg, sys.exc_info()[2])
 
@@ -392,7 +392,6 @@ def get_array_module(*args):
     .. admonition:: Example
 
        A NumPy/CuPy generic function can be written as follows::
-
        >>> def softplus(x):
        ...     xp = cupy.get_array_module(x)
        ...     return xp.maximum(0, x) + xp.log1p(xp.exp(-abs(x)))
