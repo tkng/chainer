@@ -8,6 +8,7 @@ MKLDNN_INCLUDE_PATH = MKLDNN_ROOT + '/include'
 MKLDNN_SOURCE_PATH = MKLDNN_WORK_PATH + '/source'
 MKLDNN_BUILD_PATH = MKLDNN_WORK_PATH + '/source/build'
 MKLML_PKG_PATH = MKLDNN_SOURCE_PATH + '/external'
+NUM_CPUS = len(os.sched_getaffinity(0))
 
 
 def download(mkldnn_version):
@@ -30,7 +31,8 @@ def build():
 
     os.system(
         'mkdir -p build && cd build \
-            && cmake -DCMAKE_INSTALL_PREFIX=%s .. && make -j' % MKLDNN_ROOT)
+            && cmake -DCMAKE_INSTALL_PREFIX=%s .. \
+            && make -j %d' % (MKLDNN_ROOT, NUM_CPUS))
 
 
 def install(refresh_build):
@@ -40,7 +42,7 @@ def install(refresh_build):
 
     # install mkldnn
     if refresh_build:
-        os.system('cd build && make -j && make install')
+        os.system('cd build && make -j %d && make install' % NUM_CPUS)
     else:
         os.system('cd build && make install')
 
