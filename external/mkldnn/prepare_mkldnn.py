@@ -1,5 +1,6 @@
 import os
 import sys
+import multiprocessing
 
 MKLDNN_ROOT = os.environ['HOME'] + '/.chainer'
 MKLDNN_WORK_PATH = os.path.split(os.path.realpath(__file__))[0]
@@ -8,7 +9,7 @@ MKLDNN_INCLUDE_PATH = MKLDNN_ROOT + '/include'
 MKLDNN_SOURCE_PATH = MKLDNN_WORK_PATH + '/source'
 MKLDNN_BUILD_PATH = MKLDNN_WORK_PATH + '/source/build'
 MKLML_PKG_PATH = MKLDNN_SOURCE_PATH + '/external'
-NUM_CPUS = len(os.sched_getaffinity(0))
+NUM_CPUS = multiprocessing.cpu_count()
 
 
 def download(mkldnn_version):
